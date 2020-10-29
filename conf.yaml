@@ -1,0 +1,36 @@
+version: 1
+objects:
+  queue:
+    class: queue.Queue
+    maxsize: 1000
+formatters:
+  simple:
+    format: '%(asctime)s [%(name)s] %(levelname)s: %(message)s'
+handlers:
+#  console:
+#    class: logging.StreamHandler
+#    formatter: simple
+#    stream: ext://sys.stdout
+  file:
+    class: logging.FileHandler
+    filename: _error.log
+    formatter: simple
+  queue_listener:
+    class: listener_handler.ListenerHandler
+    handlers:
+#      - cfg://handlers.console
+      - cfg://handlers.file
+    queue: cfg://objects.queue
+loggers:
+  tester:
+    propagate: false
+    handlers:
+      - queue_listener
+  app2:
+    propagate: false
+    handlers:
+      - queue_listener
+root:
+  level: DEBUG
+  handlers:
+    - queue_listener
