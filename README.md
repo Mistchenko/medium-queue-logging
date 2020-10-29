@@ -7,9 +7,6 @@ https://rob-blackbourn.medium.com/how-to-use-python-logging-queuehandler-with-di
 The following script was tested on Ubuntu 18.04 with Python 3.7
 
 ```bash
-# Clone the repo
-git clone https://github.com/rob-blackbourn/medium-queue-logging.git
-
 # Set up the project
 cd medium-queue-logging
 python3.7 -m venv .venv
